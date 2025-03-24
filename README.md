@@ -2,8 +2,22 @@
 
 This project is a simple Slack-like homepage built using **React** and **Tailwind CSS**. The design is fully responsive and includes navigation, hero sections, featured logos, and a cookie banner.
 
+## Added some features after test
+- Handle close cookie banner and set it to display none.
+- Handle close announcement banner and set it to display none.
+- Make sign in button more beautiful added hover effect init.
+- Added hover effect to the Try for free button and Sign up with google.
+- Added Google image in Sign up with google button.
+- Added under line hover effect on all nav pages route.
+
+## During the test
+-This is live when i submitted the test
 ## Live Location
 [Click here to view](https://incredible-cajeta-819667.netlify.app/)
+
+## After the Test 
+## Live Location
+[Click here to view](https://stately-arithmetic-d2007e.netlify.app/)
 
 
 ## Features
