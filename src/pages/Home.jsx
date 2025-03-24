@@ -1,7 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import { FaSearch } from "react-icons/fa";
 
 const Home = () => {
+  const [style, setStyle] = useState({
+    display: "block",
+    opacity: 1,
+    transition: "opacity 0.3s ease-in-out",
+  });
+  const [announcement, setAnnouncement] = useState({
+    display: "block",
+    opacity: 1,
+    transition: "opacity 0.3s ease-in-out",
+  });
+
+  const handleClose = () => {
+    console.log("click")
+    setStyle((prev) => ({ ...prev, opacity: 0 }));
+    setTimeout(() => {
+      setStyle((prev) => ({ ...prev, display: "none" }));
+    }, 300);
+  };
+
+  const handleAnnouncmentClose = () => {
+    console.log("click")
+    setAnnouncement((prev) => ({ ...prev, opacity: 0 }));
+    setTimeout(() => {
+      setAnnouncement((prev) => ({ ...prev, display: "none" }));
+    }, 300);
+  };
+
   return (
     <div className="bg-[#F8F3F0] min-h-screen text-black">
       {/* Navbar */}
@@ -16,15 +43,15 @@ const Home = () => {
         </div>
 
         <ul className="hidden md:flex gap-6 text-gray-600 text-sm">
-          <li className="hover:text-black cursor-pointer">Product</li>
-          <li className="hover:text-black cursor-pointer">Enterprise</li>
-          <li className="hover:text-black cursor-pointer">Resources</li>
-          <li className="hover:text-black cursor-pointer">Pricing</li>
+          <li className="hover:text-black cursor-pointer hover:underline">Product</li>
+          <li className="hover:text-black cursor-pointer hover:underline">Enterprise</li>
+          <li className="hover:text-black cursor-pointer hover:underline">Resources</li>
+          <li className="hover:text-black cursor-pointer hover:underline">Pricing</li>
         </ul>
 
         <div className="flex items-center gap-4">
           <FaSearch className="text-gray-500 hover:text-black cursor-pointer" />
-          <button className="px-3 py-1 text-sm hover:underline cursor-pointer">Sign in</button>
+          <button className="px-4 py-2 border border-[#611F69] text-[#611F69] rounded-md text-sm hover:bg-[#611F69] hover:text-white transition cursor-pointer">Sign in</button>
           <button className="px-4 py-2 border border-[#611F69] text-[#611F69] rounded-md text-sm hover:bg-[#611F69] hover:text-white transition cursor-pointer">
             Try for free
           </button>
@@ -32,10 +59,16 @@ const Home = () => {
       </nav>
 
       {/* Announcement Banner */}
-      <div className="bg-[#1264A3] text-white text-center py-4 px-2 rounded">
+      <div className="bg-[#1264A3] text-white text-center py-4 px-2 rounded" style={announcement}>
         <p className="text-sm md:text-base">
           Slack is your digital HQ. Meet the new features keeping teams connected. <br className="block md:hidden" />
           <span className="underline cursor-pointer">Let's go →</span>
+        <button
+        className="text-white text-lg hover:text-gray-200 transition cursor-pointer ml-4"
+        onClick={handleAnnouncmentClose}
+      >
+        ✖
+      </button>
         </p>
       </div>
 
@@ -47,8 +80,15 @@ const Home = () => {
             Transform the way you work with one place for everyone and everything you need to get stuff done.
           </p>
           <div className="mt-6 flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-            <button className="bg-[#611F69] text-white px-6 py-3 rounded-md">Try for free</button>
-            <button className="bg-blue-600 text-white px-6 py-3 rounded-md">Sign up with Google</button>
+            <button className="bg-[#611F69] text-white px-6 py-3 rounded-md hover:bg-[#855b8a] cursor-pointer">Try for free</button>
+            <button className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-400 cursor-pointer flex items-center gap-2">
+            <img 
+          src="https://logos-world.net/wp-content/uploads/2020/09/Google-Symbol.png" 
+          alt="Google Logo" 
+          className="w-6 h-6 object-contain"
+        />
+        Sign up with Google
+      </button>
           </div>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
@@ -97,15 +137,17 @@ const Home = () => {
       </div>
 
       {/* Cookie Banner */}
-      <div className="fixed bottom-4 right-4 bg-white p-4 shadow-md rounded-md w-80">
-        <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition cursor-pointer">✖</button>
+    <div style={style}>
+    <div className="fixed bottom-4 right-4 bg-white p-4 shadow-md rounded-md w-80">
+        <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition cursor-pointer" onClick={handleClose}>✖</button>
         <p className="text-gray-700 text-sm pr-6">
           This website uses cookies to enhance user experience and analyze traffic.
         </p>
-        <button className="bg-purple-700 text-white px-4 py-2 mt-2 w-full rounded-md hover:bg-purple-800 transition cursor-pointer">
+        <button className="bg-purple-700 text-white px-4 py-2 mt-2 w-full rounded-md hover:bg-purple-800 transition cursor-pointer" onClick={handleClose}>
           Accept All Cookies
         </button>
       </div>
+    </div>
     </div>
   );
 };
