@@ -2,23 +2,8 @@
 
 This project is a simple Slack-like homepage built using **React** and **Tailwind CSS**. The design is fully responsive and includes navigation, hero sections, featured logos, and a cookie banner.
 
-## Added some features after test
-- Handle close cookie banner and set it to display none.
-- Handle close announcement banner and set it to display none.
-- Make sign in button more beautiful added hover effect init.
-- Added hover effect to the Try for free button and Sign up with google.
-- Added Google image in Sign up with google button.
-- Added under line hover effect on all nav pages route.
-
-## During the test
--This is live when i submitted the test
 ## Live Location
 [Click here to view](https://incredible-cajeta-819667.netlify.app/)
-
-## After the Test 
-## Live Location
-[Click here to view](https://stately-arithmetic-d2007e.netlify.app/)
-
 
 ## Features
 - Responsive UI using Tailwind CSS
@@ -27,6 +12,15 @@ This project is a simple Slack-like homepage built using **React** and **Tailwin
 - Partner brand logos
 - Video preview section
 - Cookie consent banner
+- Icon selection with react-icon
+
+## State Managment
+- Handle close cookie banner and set it to with some animation.
+- Handle close announcement banner and set it with some animation.
+
+## During the test
+-This is live when i submitted the test
+
 
 ## Tech Stack
 - **Vite** - Fast build tool for frontend development
@@ -51,41 +45,4 @@ This project is a simple Slack-like homepage built using **React** and **Tailwin
    npm run dev
    ```
    The app will be available at `http://localhost:3000`.
-
-## Tailwind Setup
-Ensure Tailwind CSS is properly set up:
-1. Install Tailwind, PostCSS, and Autoprefixer:
-   ```sh
-   npm install -D tailwindcss postcss autoprefixer
-   ```
-2. Initialize Tailwind:
-   ```sh
-   npx tailwindcss init -p
-   ```
-3. Configure `tailwind.config.js`:
-   ```js
-   module.exports = {
-     content: ["./src/**/*.{js,jsx,ts,tsx}"],
-     theme: {
-       extend: {},
-     },
-     plugins: [],
-   };
-   ```
-4. Add Tailwind imports to `index.css`:
-   ```css
-   @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
-   ```
-
-## Deployment
-To build for production:
-```sh
-npm run build
-```
-To preview production build:
-```sh
-npm run preview
-```
 

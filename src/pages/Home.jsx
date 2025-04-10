@@ -1,5 +1,7 @@
 import React, {useState} from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch} from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
+import { FiChevronDown } from "react-icons/fi";
 
 const Home = () => {
   const [style, setStyle] = useState({
@@ -12,6 +14,8 @@ const Home = () => {
     opacity: 1,
     transition: "opacity 0.3s ease-in-out",
   });
+
+  const [isProductOpen, setIsProductOpen] = useState(false);
 
   const handleClose = () => {
     console.log("click")
@@ -31,8 +35,9 @@ const Home = () => {
 
   return (
     <div className="bg-[#F8F3F0] min-h-screen text-black">
-      {/* Navbar */}
-      <nav className="flex flex-wrap justify-between items-center px-6 py-3 bg-white shadow-md md:px-10 lg:px-20">
+      <div className="w-[80%] flext m-auto items-center justify-center">
+        {/* Navbar */}
+      <nav className="flex flex-wrap justify-between items-center px-6 py-3 md:px-10 lg:px-20">
         <div className="flex items-center gap-2">
           <img
             src="https://logosmarcas.net/wp-content/uploads/2020/11/Slack-Emblema.png"
@@ -40,36 +45,60 @@ const Home = () => {
             className="w-8 h-8 object-contain"
           />
           <span className="font-bold text-lg">Slack</span>
+          <ul className="hidden md:flex gap-6 text-gray-600 px-3 font-semibold relative">
+      <li
+        className="relative hover:text-black cursor-pointer"
+        onMouseEnter={() => setIsProductOpen(true)}
+        onMouseLeave={() => setIsProductOpen(false)}
+      >
+        <div className="flex items-center gap-1 hover:underline">
+          Product
+          <FiChevronDown
+            className={`transition-transform duration-200 ${
+              isProductOpen ? "rotate-180" : "rotate-0"
+            }`}
+          />
         </div>
 
-        <ul className="hidden md:flex gap-6 text-gray-600 text-sm">
-          <li className="hover:text-black cursor-pointer hover:underline">Product</li>
-          <li className="hover:text-black cursor-pointer hover:underline">Enterprise</li>
-          <li className="hover:text-black cursor-pointer hover:underline">Resources</li>
-          <li className="hover:text-black cursor-pointer hover:underline">Pricing</li>
-        </ul>
+        {isProductOpen && (
+          <ul className="absolute top-7 left-0 bg-white shadow-md rounded-md py-2 w-44 z-20">
+            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Overview</li>
+            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Features</li>
+            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Integrations</li>
+          </ul>
+        )}
+      </li>
+      <li className="hover:text-black cursor-pointer hover:underline">Enterprise</li>
+      <li className="hover:text-black cursor-pointer hover:underline">Resources</li>
+      <li className="hover:text-black cursor-pointer hover:underline">Pricing</li>
+    </ul>
+        </div>
+
 
         <div className="flex items-center gap-4">
           <FaSearch className="text-gray-500 hover:text-black cursor-pointer" />
-          <button className="px-4 py-2 border border-[#611F69] text-[#611F69] rounded-md text-sm hover:bg-[#611F69] hover:text-white transition cursor-pointer">Sign in</button>
-          <button className="px-4 py-2 border border-[#611F69] text-[#611F69] rounded-md text-sm hover:bg-[#611F69] hover:text-white transition cursor-pointer">
+          <button className="px-4 py-2 rounded-md text-sm font-semibold cursor-pointer hover:underline">Sign in</button>
+          <button className="px-4 py-2 border border-[#611F69] text-[#611F69] rounded-md text-sm font-semibold hover:bg-[#611F69] hover:text-white transition cursor-pointer">Talk To Sales</button>
+          <button className="px-4 py-2 border text-white bg-[#611F69] rounded-md text-smtransition cursor-pointer">
             Try for free
           </button>
         </div>
       </nav>
 
       {/* Announcement Banner */}
-      <div className="bg-[#1264A3] text-white text-center py-4 px-2 rounded" style={announcement}>
-        <p className="text-sm md:text-base">
-          Slack is your digital HQ. Meet the new features keeping teams connected. <br className="block md:hidden" />
+      <div className="bg-[#1264A3] text-white text-center py-4 px-2 rounded-full" style={announcement}>
+        <div className="flex justify-around items-center">
+        <span className="text-sm md:text-base">
+          Slack is your digital HQ. <span className="text-sm">Meet the new features keeping teams connected work-from-anywhere world.</span> <br className="block md:hidden" />
           <span className="underline cursor-pointer">Let's go →</span>
+          </span>
         <button
         className="text-white text-lg hover:text-gray-200 transition cursor-pointer ml-4"
         onClick={handleAnnouncmentClose}
       >
-        ✖
+        <AiOutlineClose size={16} />
       </button>
-        </p>
+        </div>
       </div>
 
       {/* Hero Section */}
@@ -101,18 +130,38 @@ const Home = () => {
       </section>
 
       {/* Trusted By Section */}
-      <div className="flex flex-wrap justify-center gap-6 px-4 mt-6">
-        {[
-          "https://www.maramaexperience.com/wp-content/uploads/2023/09/Fox_Corporation-Logo.wine_.svg",
-          "https://download.logo.wine/logo/Lonely_Planet/Lonely_Planet-Logo.wine.png",
-          "https://download.logo.wine/logo/Intuit/Intuit-Logo.wine.png",
-          "https://companieslogo.com/img/orig/CVNA_BIG-0e1228ee.png?t=1673238139",
-          "https://freepngdesign.com/content/uploads/images/p20-21-kiva-5914633389.png",
-          "https://www.globalafricanetwork.com/wp-content/uploads/2023/07/DEVAC-HYDROGEN-H-Logo-1068x.jpg"
-        ].map((src, index) => (
-          <img key={index} src={src} alt="Company Logo" className="h-8" />
-        ))}
-      </div>
+      <div className="flex flex-wrap justify-center items-center gap-17 mt-6">
+  <img
+    src="https://www.maramaexperience.com/wp-content/uploads/2023/09/Fox_Corporation-Logo.wine_.svg"
+    alt="Fox Corporation Logo"
+    className="h-10"
+  />
+  <img
+    src="https://download.logo.wine/logo/Lonely_Planet/Lonely_Planet-Logo.wine.png"
+    alt="Lonely Planet Logo"
+    className="h-13"
+  />
+  <img
+    src="https://download.logo.wine/logo/Intuit/Intuit-Logo.wine.png"
+    alt="Intuit Logo"
+    className="h-13"
+  />
+  <img
+    src="https://companieslogo.com/img/orig/CVNA_BIG-0e1228ee.png?t=1673238139"
+    alt="Carvana Logo"
+    className="h-9"
+  />
+  <img
+    src="https://freepngdesign.com/content/uploads/images/p20-21-kiva-5914633389.png"
+    alt="Kiva Logo"
+    className="h-9"
+  />
+  <img
+    src="https://th.bing.com/th/id/OIP.J63VuzY8-cXYgXESuDZxjgHaBg?rs=1&pid=ImgDetMain"
+    alt="DevaCurl Logo"
+    className="h-7"
+  />
+</div>
 
       {/* Call to Action */}
       <div className="relative max-w-6xl mx-auto mt-12 flex flex-col md:flex-row items-center gap-8 px-6">
@@ -139,15 +188,28 @@ const Home = () => {
       {/* Cookie Banner */}
     <div style={style}>
     <div className="fixed bottom-4 right-4 bg-white p-4 shadow-md rounded-md w-80">
-        <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition cursor-pointer" onClick={handleClose}>✖</button>
-        <p className="text-gray-700 text-sm pr-6">
-          This website uses cookies to enhance user experience and analyze traffic.
-        </p>
-        <button className="bg-purple-700 text-white px-4 py-2 mt-2 w-full rounded-md hover:bg-purple-800 transition cursor-pointer" onClick={handleClose}>
-          Accept All Cookies
-        </button>
-      </div>
+    <button
+      className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 transition cursor-pointer"
+      onClick={handleClose}
+    >
+      <AiOutlineClose size={16} />
+    </button>
+    <p className="text-gray-700 text-sm pr-6 text-center">
+      This website uses cookies to enhance user experience and analyze traffic on your website. We also share your information abut your use of our site with our social media advertising <span className="text-violet-700 underline">More Info...</span>
+    </p>
+    <button
+      className="bg-purple-700 text-white px-4 py-2 mt-2 w-full rounded-md hover:bg-purple-800 transition cursor-pointer"
+      onClick={handleClose}
+    >
+      Accept All Cookies
+    </button>
+  <div className="flex gap-2 mt-4 text-center">
+    <p className="text-sm text-gray-700 bg-white border border-gray-200 backdrop-blur-md p-3 rounded-xl shadow-lg z-10 relativee">Hey there 👋 want to know something cool?</p> <h3 className="bg-purple-700 p-3 text-xl rounded-lg">👋</h3>
+  </div>
+  </div>
+
     </div>
+      </div>
     </div>
   );
 };
